@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const csv = require('fast-csv');
 
-// arrayOfBH = [[[]]]
+arrayOfBH = [[[]]]
 
 fs.createReadStream(path.resolve(__dirname, 'data', "dataset1", 'el1_512_512_512.csv'))
 // fs.createReadStream(path.resolve(__dirname, 'data', "data_1.csv"))
@@ -16,8 +16,6 @@ fs.createReadStream(path.resolve(__dirname, 'data', "dataset1", 'el1_512_512_512
 let counter = 0;
 let BHcouter = 0;
 readRow = (row) => {
-
-
   counter++;
   if(counter % 1000000 === 0)console.log("ROW ", row)
   let x = row[0].slice(0, 2);
