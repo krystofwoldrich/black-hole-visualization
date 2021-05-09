@@ -87,10 +87,50 @@ let cutData = (pathFrom, pathTo, cuts) => {
   }
 }
 
+let getMaxAndMinScalar = (pathFrom) => {
+
+  let min = 10;
+  let max = 0;
+  let reducedArrayCut = []
+  // reducedArrayScalar.push(["X","Y","Z","D"])
+  let counter = 0;
+  fs.createReadStream(path.resolve(__dirname, pathFrom))
+    // fs.createReadStream(path.resolve(__dirname, 'data', "data_1.csv"))
+    .pipe(csv.parse({headers: false}))
+    .on('error', error => console.error(error))
+    .on('data', row => readRow(row))
+    .on('end', rowCount => {
+      // console.log(`BHrows ${BHcouter}`)
+      console.log(`Parsed ${rowCount} rows`)
+      console.log("-> MIN: ", min);
+      console.log("-> MAX: ", max);
+
+    });
+
+  let readRow = (row) => {
+    if(isNaN(row[3])){
+      return
+    }
+    let d = parseFloat(row[3])
+    if(d> max){
+      max = d
+    }
+    if( d < min){
+      min = d
+    }
+
+
+  }
+
+}
+
+getMaxAndMinScalar('data/dataset1/el1CUTScalar.csv')
+
+
 
 // reduceRows('data/dataset3/el3_512_512_512.csv', "data/dataset3/el3Reduced64.csv")
 // makeScalars('data/dataset3/el3Reduced64.csv', 'data/dataset3/el3Reduced64Scalar.csv')
-makeScalars('data/dataset1/el1CUT.csv', 'data/dataset1/el1CUTScalar.csv')
+// makeScalars('data/dataset1/el1CUT.csv', 'data/dataset1/el1CUTScalar.csv')
 
 // const cut ={
 //   x:{

@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "data": "node LoadData.js",
-    "test": "node loadAndSave.js"
+    "manage-data": "node loadAndSave.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
