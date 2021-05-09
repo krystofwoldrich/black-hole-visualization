@@ -124,14 +124,14 @@ let getMaxAndMinScalar = (pathFrom) => {
 
 }
 
-getMaxAndMinScalar('data/dataset1/el1CUTScalar.csv')
+getMaxAndMinScalar('data/dataset1/mag1CUT2Scalar.csv')
 
 
 
 // reduceRows('data/dataset3/el3_512_512_512.csv', "data/dataset3/el3Reduced64.csv")
 // makeScalars('data/dataset3/el3Reduced64.csv', 'data/dataset3/el3Reduced64Scalar.csv')
-// makeScalars('data/dataset1/el1CUT.csv', 'data/dataset1/el1CUTScalar.csv')
-
+// makeScalars('data/dataset1/mag1CUT1.csv', 'data/dataset1/mag1CUT1Scalar.csv')
+// makeScalars('data/dataset1/mag1CUT2.csv', 'data/dataset1/mag1CUT2Scalar.csv')
 // const cut ={
 //   x:{
 //     high: 0.77,

@@ -8,12 +8,13 @@ export default class Render {
   renderer;
   results = [];
   opacity = 0.7
-  minScale = 0.009154263417774748; // -0.37586// 1.1682089853006994 //0.009154263417774748;
-  maxScale = 0.7339091467266231; // 0.33631// 12.569004536008084//1.9901629763665085; //TODO setup
+  minScale = 0;
+  maxScale = 10;
   allCones = [];
   podvzorMin = 10;
   podvzorMax = 50;
-  dataUrl = '../data/ds1/el1CUT.csv'//'../data/ds2/el2Reduced64.csv'//'../data/ds1/el1CUT.csv'//'../data/ds1/el1Reduced64.csv'
+  dataUrl = '../data/ds1/el1Reduced64.csv'
+  dataUrl2 = '../data/ds1/el1CUT2.csv'
   gridLayoutX = 10
   gridLayoutY = 10
   gridLayoutZ = 10
@@ -34,11 +35,16 @@ export default class Render {
     this.camera.position.z = 1;
     this.animate();
     // this.renderSphere(5,"red",0.5, {x:1,y:1,z:1})
-    this.loadFile().then(() => {
+    this.loadFile(this.dataUrl).then(() => {
         console.log("-> Done loading",);
         this.makeGlyphs()
       }
     );
+    // this.loadFile(this.dataUrl2).then(() => {
+    //     console.log("-> Done loading",);
+    //     this.makeGlyphs()
+    //   }
+    // );
   }
   animate = () => {
     requestAnimationFrame(this.animate);
@@ -46,8 +52,8 @@ export default class Render {
     this.renderer.render(this.scene, this.camera);
   }
 
-  async loadFile() {
-    const response = await fetch(this.dataUrl)
+  async loadFile(url) {
+    const response = await fetch(url)
     const data = await response.text()
     this.results = data.split("\n")
   }
@@ -113,7 +119,14 @@ export default class Render {
   }
 
   setupMaxMinValues(){
-    this.results[0]
+    let currentRow = this.results[0].split(",")
+    this.minScale = parseFloat(currentRow[0]);
+    this.maxScale = parseFloat(currentRow[1]);
+    this.podvzorMin = parseFloat(currentRow[2]);
+    this.podvzorMax = parseFloat(currentRow[3]);
+    this.gridLayoutX = parseFloat(currentRow[4]);
+    this.gridLayoutY = parseFloat(currentRow[5]);
+    this.gridLayoutZ = parseFloat(currentRow[6]);
   }
 
   getColor(val){
