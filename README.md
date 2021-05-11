@@ -37,3 +37,24 @@ How to get min and max scalar.
 node tools/getMaxAndMinScalar.js \
 	--pathFrom "../el1_512_512_512.csv"
 ```
+
+### How to run tools as multithread
+
+The multithread runner needs to be executed in folder, where the data source is located.
+
+| Position | Argument detail                 |
+|----------|---------------------------------|
+| 1        | Data source file name           |
+| 2        | Tool name                       |
+| 3        | Tool arguments (as string)      |
+| 4        | Threads count                   |
+| 5        | Absolute path to the repository |
+
+```bash
+./tools/multithreadRunner.sh \
+	el1_512_512_512.csv \
+	reduceRows.js \
+	"--modulo 64" \
+	30 \
+	/home/ubuntu/viz-black-hole-visualization
+```
