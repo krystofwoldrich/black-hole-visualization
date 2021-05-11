@@ -1,0 +1,11 @@
+ubuntu@ip-172-31-5-100:~/viz-black-hole-visualization$ node tools/getMaxAndMinValues.js --pathFrom vite-project/data/ds3/el3_scalars.csv
+CLI Progress |████████████████████████████████████████| 100% || 97475722/89087286 Chunks | Duration: 20s || ETA: 0s
+Parsed 2097109 rows
+-> MIN_D:  3.528090571399776
+-> MAX_D:  17.00857048696333
+-> MIN_X:  0.45196
+-> MAX_X:  0.95
+-> MIN_Y:  -1.35
+-> MAX_Y:  -0.85
+-> MIN_Z:  -1.25
+-> MAX_Z:  -0.75

@@ -1,0 +1,11 @@
+ubuntu@ip-172-31-5-100:~/viz-black-hole-visualization$ node tools/getMaxAndMinValues.js --pathFrom vite-project/data/ds2/mag2_scalars.csv
+CLI Progress |████████████████████████████████████████| 100% || 97709330/89320882 Chunks | Duration: 20s || ETA: 0s
+Parsed 2097112 rows
+-> MIN_D:  0.003936813450912934
+-> MAX_D:  15.612773989781772
+-> MIN_X:  0.21781
+-> MAX_X:  1.5
+-> MIN_Y:  -2.7
+-> MAX_Y:  -1.3
+-> MIN_Z:  -0.9
+-> MAX_Z:  0.9
