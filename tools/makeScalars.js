@@ -22,14 +22,18 @@ function makeScalars(pathFrom, pathTo) {
     cliProgress.Presets.shades_classic,
   );
   bar.start(size, 0);
-
+let t = true
   let reducedArrayScalar = []
   reducedArrayScalar.push(["X","Y","Z","D"])
   fs.createReadStream(path.resolve(process.cwd(), pathFrom))
+    .on('data', (chunk) => {
+      bar.increment(chunk.length)
+    })
     .pipe(csv.parse({headers: false}))
     .on('error', error => console.error(error))
     .on('data', row => readRow(row))
     .on('end', rowCount => {
+      bar.stop()
       console.log(`Parsed ${rowCount} rows`)
       csv.writeToPath(path.resolve(process.cwd(), pathTo), reducedArrayScalar)
         .on('error', err => console.error(err))
@@ -37,8 +41,6 @@ function makeScalars(pathFrom, pathTo) {
     });
 
   let readRow = (row) => {
-	bar.increment(Buffer.from(row).length)
-
     let x = parseFloat(row[0])
     let y = parseFloat(row[1])
     let z = parseFloat(row[2])

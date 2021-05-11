@@ -31,10 +31,14 @@ function cutData(pathFrom, pathTo, cut) {
   let reducedArrayCut = []
   let counter = 0;
   fs.createReadStream(path.resolve(process.cwd(), pathFrom))
+    .on('data', (chunk) => {
+      bar.increment(chunk.length)
+    })
     .pipe(csv.parse({headers: false}))
     .on('error', error => console.error(error))
     .on('data', row => readRow(row))
     .on('end', rowCount => {
+      bar.stop()
       console.log(`Parsed ${rowCount} rows`)
       console.log("-> counter", counter);
       csv.writeToPath(path.resolve(process.cwd(), pathTo), reducedArrayCut)
@@ -43,8 +47,6 @@ function cutData(pathFrom, pathTo, cut) {
     });
 
   let readRow = (row) => {
-    bar.increment(Buffer.from(row).length)
-
     let x = parseFloat(row[0])
     let y = parseFloat(row[1])
     let z = parseFloat(row[2])

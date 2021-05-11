@@ -31,10 +31,14 @@ function getMaxAndMinValues(pathFrom) {
   let minZ = Number.MAX_SAFE_INTEGER;
   let maxZ = Number.MIN_SAFE_INTEGER;
   fs.createReadStream(path.resolve(process.cwd(), pathFrom))
+    .on('data', (chunk) => {
+      bar.increment(chunk.length)
+    })
     .pipe(csv.parse({headers: false}))
     .on('error', error => console.error(error))
     .on('data', row => readRow(row))
     .on('end', rowCount => {
+      bar.stop()
       console.log(`Parsed ${rowCount} rows`)
       console.log("-> MIN: ", minScalar);
       console.log("-> MAX: ", maxScalar);
