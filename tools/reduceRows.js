@@ -27,6 +27,9 @@ function reduceRows(pathFrom, pathTo, modulo) {
   bar.start(size, 0);
 
   fs.createReadStream(path.resolve(process.cwd(), pathFrom))
+    .on('data', (chunk) => {
+      bar.increment(chunk.length)
+    })
     .pipe(csv.parse({headers: false}))
     .on('error', error => console.error(error))
     .on('data', row => readRow(row))
@@ -39,7 +42,6 @@ function reduceRows(pathFrom, pathTo, modulo) {
     });
   let current = 0;
   let readRow = (row) => {
-    bar.increment(Buffer.from(row).length)
     current++
     if (current % modulo === 0) {
       reducedArray.push(row)
