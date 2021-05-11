@@ -46,6 +46,18 @@
     "address": "./data/ds1/mag1_reducedRows_extra.csv",
     "slug": "d1m1R",
     "color": "orange"
+  },
+  {
+    "name": "ds2-mag-RED",
+    "address": "./data/ds2/mag2_reducedRows.csv",
+    "slug": "d2m1R",
+    "color": "orange"
+  },
+  {
+    "name": "ds2-el-RED",
+    "address": "./data/ds2/el2_reducedRows.csv",
+    "slug": "d2e1R",
+    "color": "yellow"
   }
 ]
 
