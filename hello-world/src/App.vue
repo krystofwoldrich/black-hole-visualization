@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="main">
+    <Legend />
     <Controls @max-cone="maxConeRender" @height-cone="heightConeRender" @opacity-cone="opacityConeRender" @load-data="loadData" @show-data="showData"/>
   </div>
 </template>
@@ -7,11 +8,13 @@
 <script>
 import Render from './js/render'
 import Controls from "@/components/Controls";
+import Legend from "@/components/Legend";
 
 let threeRenderer;
 export default {
   name: 'App',
   components: {
+    Legend,
     Controls
   },
   data() {

@@ -2,22 +2,50 @@
   {
     "name": "ds1-el-Red",
     "address": "./data/ds1/el1Reduced64.csv",
-    "slug": "d1e1r"
+    "slug": "d1e1r",
+    "color": "yellow"
   },
   {
     "name": "ds1-mag-Red",
     "address": "./data/ds1/mag1Reduced64.csv",
-    "slug": "d1m1r"
+    "slug": "d1m1r",
+    "color": "orange"
   },
   {
     "name": "ds1-elcut1-better-RED",
     "address": "./data/ds1/el1_square_cut1_reducer.csv",
-    "slug": "d1e1c1bR"
+    "slug": "d1e1c1bR",
+    "color": "yellow"
   },
   {
     "name": "ds1-elcut2-better-RED",
     "address": "./data/ds1/el1_square_cut2_reducer.csv",
-    "slug": "d1e1c2bR"
+    "slug": "d1e1c2bR",
+    "color": "yellow"
+  },
+  {
+    "name": "ds1-mag-cut1-better-RED",
+    "address": "./data/ds1/mag1_square_cut1_reduced.csv",
+    "slug": "d1m1c1bR",
+    "color": "orange"
+  },
+  {
+    "name": "ds1-mag-cut2-better-RED",
+    "address": "./data/ds1/mag1_square_cut2_reduced.csv",
+    "slug": "d1m1c2bR",
+    "color": "orange"
+  },
+  {
+    "name": "ds1-el-RED",
+    "address": "./data/ds1/el1_reducedRows_extra.csv",
+    "slug": "d1e1R",
+    "color": "yellow"
+  },
+  {
+    "name": "ds1-mag-RED",
+    "address": "./data/ds1/mag1_reducedRows_extra.csv",
+    "slug": "d1m1R",
+    "color": "orange"
   }
 ]
 

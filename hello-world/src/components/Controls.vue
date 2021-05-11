@@ -71,12 +71,12 @@ export default {
     },
     checkEventLoad (item, event) {
       console.log("-> event", event);
-      let setupLoadElement = {address:item.address, slug:item.slug, load:event.target.checked}
+      let setupLoadElement = {address:item.address, slug:item.slug, load:event.target.checked, color:item.color}
       this.$emit('load-data', setupLoadElement)
     },
     checkEventShow (item, event) {
       console.log("-> event", event);
-      let setupShowElement = {address:item.address, slug:item.slug, show:event.target.checked}
+      let setupShowElement = {address:item.address, slug:item.slug, show:event.target.checked, color:item.color}
       this.$emit('show-data', setupShowElement)
     },
     changeNumberOfCones (event) {

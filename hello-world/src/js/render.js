@@ -53,7 +53,8 @@ export default class Render {
         response.text()
           .then(data => {
             this.results = data.split("\n")
-            this.makeGlyphs(emittedData.slug)
+            console.log("-> emittedData", emittedData);
+            this.makeGlyphs(emittedData.slug,emittedData.color)
           });
       });
 
@@ -88,19 +89,20 @@ export default class Render {
     sphere.position.set(position.x, position.y, position.z)
     return(sphere)
   }
-  renderCone = (prop, height =1, opacity=0.5) => {
+  renderCone = (prop, color, height =1, opacity=0.5) => {
     const glyphGeometry = new THREE.ConeGeometry(0.1, height, 6);
     let scaleOfData = Math.sqrt(Math.pow(prop.d1,2) + Math.pow(prop.d2,2) + Math.pow(prop.d3,2))
     let normalizationScale = (scaleOfData - this.minScale) / (this.maxScale - this.minScale);
 
     const material = new THREE.MeshBasicMaterial({
-      color: this.getColor(normalizationScale), transparent: true
+      color: color, transparent: true
     });
 
     material.opacity = opacity;
     const glyph = new THREE.Mesh(glyphGeometry, material);
     glyph.VIZ = prop;
     glyph.VIZ.opacity = opacity;
+    glyph.VIZ.color = color;
     this.scene.add(glyph)
 
     glyph.position.set(prop.x * this.gridLayoutX, prop.y * this.gridLayoutY, prop.z * this.gridLayoutZ);
@@ -116,7 +118,8 @@ export default class Render {
 
   }
 
-  makeGlyphs = (slug) => {
+  makeGlyphs = (slug, color) => {
+    console.log("-> color", color);
     // this.setupMaxMinValues(); TODO
     let arrayOfDatasetGlyphs = {spheres:[], cones:[]
       }
@@ -137,7 +140,7 @@ export default class Render {
         let d2 = parseFloat(currentRow[4]);
         let d3 = parseFloat(currentRow[5]);
         arrayOfDatasetGlyphs.cones.push(
-          this.renderCone({x,y,z,d1,d2,d3},)
+          this.renderCone({x,y,z,d1,d2,d3}, color )//TODO
         )
 
       }
@@ -168,7 +171,6 @@ export default class Render {
   }
 
   hideFile(emittedData){
-    debugger
     this.allMesh[emittedData.slug].spheres.forEach(sphere =>   {
       const object = this.scene.getObjectByProperty( 'uuid', sphere.uuid );
       object.visible = false;
@@ -208,7 +210,7 @@ export default class Render {
         conesOld[i].geometry.dispose();
         conesOld[i].material.dispose();
         this.scene.remove( conesOld[i] );
-        conesNew.push(this.renderCone(propOld, height, propOld.opacity))
+        conesNew.push(this.renderCone(propOld, propOld.color, height, propOld.opacity))
       }
 
       this.allMesh[property].cones = conesNew
