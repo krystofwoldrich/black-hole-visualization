@@ -25,24 +25,32 @@ export default {
   methods:{
     maxConeRender(data){
       console.log("-> data", data);
-
+      threeRenderer.maxConesClient(data)
     },
     heightConeRender(data){
       console.log("-> data", data);
-
+      threeRenderer.changeHeightOfCones(data)
     },
     opacityConeRender(data){
       console.log("-> data", data);
-
+      threeRenderer.changeOpacityOfCones(data)
     },
     loadData(data){
       console.log("-> data", data);
-      threeRenderer.loadData(data.address)
+      if(data.load){
+        threeRenderer.loadFile(data)
+      }else{
+        threeRenderer.unloadFile(data)
+      }
 
     },
     showData(data){
       console.log("-> data", data);
-
+      if(data.show){
+        threeRenderer.hideFile(data)
+      }else{
+        threeRenderer.showFile(data)
+      }
     },
   }
 }

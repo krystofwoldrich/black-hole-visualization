@@ -1,6 +1,6 @@
 <template>
   <div class="window">
-    <div>Load</div>
+    <div>Load / delete (fully load or delete cones)</div>
     <div>
       <ul>
         <li v-bind:key="data.name + data.type" v-for="data in loadData">
@@ -9,7 +9,7 @@
         </li>
       </ul>
     </div>
-    <div>Show</div>
+    <div>Show / hide ( only hide / show cones, not remove)</div>
     <div>
       <ul>
         <li v-bind:key="data.name + data.type" v-for="data in showData">
@@ -19,7 +19,7 @@
       </ul>
     </div>
     <div>Change number of cones: {{maxCone}}</div>
-    <input  v-bind:value="maxCone" type="range" min="50" max="500" step="50" @change="changeNumberOfCones($event)" />
+    <input  v-bind:value="maxCone" type="range" min="1" max="10" step="1" @change="changeNumberOfCones($event)" />
     <div>Change height of cones: {{heightCone}}</div>
     <input v-bind:value="heightCone" type="range" min="0.1" max="6" step="0.1" @change="changeHeightOfCones($event)" />
     <div>Change opacity of cones: {{opacityCone}}</div>
@@ -40,8 +40,8 @@ export default {
     return {
       loadData,
       showData,
-      maxCone: 200,
-      heightCone:0.5,
+      maxCone: 10,
+      heightCone:1,
       opacityCone:0.7
     }
   },
@@ -71,19 +71,13 @@ export default {
     },
     checkEventLoad (item, event) {
       console.log("-> event", event);
-      // alert(item.name);
-      // alert(item.address);
-      // alert(event.target.checked);
-      let setupLoadElement = {address:item.address, load:event.target.checked}
+      let setupLoadElement = {address:item.address, slug:item.slug, load:event.target.checked}
       this.$emit('load-data', setupLoadElement)
     },
     checkEventShow (item, event) {
       console.log("-> event", event);
-      // alert(item.name);
-      // alert(item.address);
-      // alert(event.target.checked);
-      let setupLoadElement = {name: item.name, address:item.address, load:event.target.checked}
-      this.$emit('show-data', setupLoadElement)
+      let setupShowElement = {address:item.address, slug:item.slug, show:event.target.checked}
+      this.$emit('show-data', setupShowElement)
     },
     changeNumberOfCones (event) {
       console.log("-> NUM of COnes", event);

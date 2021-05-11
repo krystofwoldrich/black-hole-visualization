@@ -9,6 +9,10 @@ const server = require('http').createServer(app)
 //here we are configuring dist to serve app files
 app.use('/', serveStatic(path.join(__dirname, '/app/dist')))
 
+let bodyParser = require('body-parser');
+// app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 // this * route is to serve project on different page routes except root `/`
 // app.get(/.*/, function (req, res) {
@@ -34,6 +38,13 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
+
+/**
+ * Make Api endpoints
+ *
+ * */
+const Api = require("./api");
+new Api(app);
 
 const port = process.env.PORT || 8000
 server.listen(port, () =>{
