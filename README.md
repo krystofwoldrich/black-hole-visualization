@@ -58,3 +58,12 @@ The multithread runner needs to be executed in folder, where the data source is 
 	30 \
 	/home/ubuntu/viz-black-hole-visualization
 ```
+
+```bash
+./tools/multithreadRunner.sh \
+	el1_512_512_512.csv \
+	cutData.js \
+	"--cutXH=0.7 --cutXL=-0.7 --cutYH=0.7 --cutYL=-0.7 --cutZH=1.264 --cutZL=0.969" \
+	16 \
+	/home/ubuntu/viz-black-hole-visualization
+```
