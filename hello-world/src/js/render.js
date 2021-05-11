@@ -1,8 +1,5 @@
-/* eslint-disable * */
 import * as THREE from '../../node_modules/three/build/three.module'
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
-// import el1CUT1 from '../assets/datasets/ds1/el1CUT1.csv'
-// import el1Reduced64 from '../assets/datasets/ds1/el1Reduced64.csv'
 
 export default class Render {
   scene;
@@ -14,17 +11,12 @@ export default class Render {
   maxScale = 10;
   podvzorMin = 10;
   podvzorMax = 50;
-  dataUrl = '../assets/dataset/ds1/el1CUT1.csv'
-  dataUrl2 = '../data/ds1/mag1CUT1.csv'
-  // dataUrl2 = '../data/ds1/mag1Reduced64.csv'
   gridLayoutX = 10
   gridLayoutY = 10
   gridLayoutZ = 10
   allMesh = {}
 
-  constructor() {
-    // this.init();
-  }
+  constructor() {}
 
   init = () => {
     this.scene = new THREE.Scene();

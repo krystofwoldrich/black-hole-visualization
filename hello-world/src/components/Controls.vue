@@ -2,7 +2,7 @@
   <div class="window">
     <div>Load / delete (fully load or delete cones)</div>
     <div>
-      <ul>
+      <ul class="scroll-inputs">
         <li v-bind:key="data.name + data.type" v-for="data in loadData">
           {{ data.name }}
           <input type="checkbox" @change="checkEventLoad(data,$event)">
@@ -11,7 +11,7 @@
     </div>
     <div>Show / hide ( only hide / show cones, not remove)</div>
     <div>
-      <ul>
+      <ul class="scroll-inputs">
         <li v-bind:key="data.name + data.type" v-for="data in showData">
           {{ data.name }}
           <input type="checkbox" @change="checkEventShow(data,$event)">
@@ -108,5 +108,9 @@ export default {
   right: 2%;
   top: 2%;
   background: white;
+}
+.scroll-inputs{
+  overflow: scroll;
+  height: 15rem;
 }
 </style>
