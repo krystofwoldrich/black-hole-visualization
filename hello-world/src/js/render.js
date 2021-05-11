@@ -10,7 +10,6 @@ export default class Render {
   camera;
   renderer;
   results = [];
-  opacity = 0.7
   minScale = 0;
   maxScale = 10;
   podvzorMin = 10;
@@ -97,7 +96,7 @@ export default class Render {
     sphere.position.set(position.x, position.y, position.z)
     return(sphere)
   }
-  renderCone = (prop, height =1) => {
+  renderCone = (prop, height =1, opacity=0.5) => {
     const glyphGeometry = new THREE.ConeGeometry(0.1, height, 6);
     let scaleOfData = Math.sqrt(Math.pow(prop.d1,2) + Math.pow(prop.d2,2) + Math.pow(prop.d3,2))
     let normalizationScale = (scaleOfData - this.minScale) / (this.maxScale - this.minScale);
@@ -106,9 +105,10 @@ export default class Render {
       color: this.getColor(normalizationScale), transparent: true
     });
 
-    material.opacity = this.opacity;
+    material.opacity = opacity;
     const glyph = new THREE.Mesh(glyphGeometry, material);
     glyph.VIZ = prop;
+    glyph.VIZ.opacity = opacity;
     this.scene.add(glyph)
 
     glyph.position.set(prop.x * this.gridLayoutX, prop.y * this.gridLayoutY, prop.z * this.gridLayoutZ);
@@ -216,7 +216,7 @@ export default class Render {
         conesOld[i].geometry.dispose();
         conesOld[i].material.dispose();
         this.scene.remove( conesOld[i] );
-        conesNew.push(this.renderCone(propOld, height))
+        conesNew.push(this.renderCone(propOld, height, propOld.opacity))
       }
 
       this.allMesh[property].cones = conesNew
@@ -229,6 +229,7 @@ export default class Render {
       let conesOld = this.allMesh[property].cones
       for (let i = 0; i < conesOld.length; i++) {
         conesOld[i].material.opacity = opacity;
+        conesOld[i].VIZ.opacity = opacity;
       }
     }
   }
