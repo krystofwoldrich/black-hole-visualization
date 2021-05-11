@@ -1,0 +1,28 @@
+[
+  {
+    "name": "ds1-elCUT1",
+    "address": "../assets/datasets/ds1/el1CUT1.csv"
+  },
+  {
+    "name": "ds1-elCUT2",
+    "address": "../assets/datasets/ds1/el1CUT2.csv"
+  },
+  {
+    "name": "ds1-elReduced",
+    "address": "../assets/datasets/ds1/el1Reduced64.csv"
+  },
+  {
+    "name": "ds1-magCUT1",
+    "address": "../assets/datasets/ds1/mag1CUT1.csv"
+  },
+  {
+    "name": "ds1-magCUT2",
+    "address": "../assets/datasets/ds1/mag1CUT2.csv"
+  },
+  {
+    "name": "ds1-magReduced",
+    "address": "../assets/datasets/ds1/el1Reduced64.csv"
+  }
+]
+
+

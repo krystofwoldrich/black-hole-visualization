@@ -124,7 +124,7 @@ let getMaxAndMinScalar = (pathFrom) => {
 
 }
 
-getMaxAndMinScalar('data/dataset1/mag1CUT2Scalar.csv')
+// getMaxAndMinScalar('data/dataset3/el3Reduced64Scalar.csv')
 
 
 
