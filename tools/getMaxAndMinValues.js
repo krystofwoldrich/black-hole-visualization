@@ -40,8 +40,14 @@ function getMaxAndMinValues(pathFrom) {
     .on('end', rowCount => {
       bar.stop()
       console.log(`Parsed ${rowCount} rows`)
-      console.log("-> MIN: ", minScalar);
-      console.log("-> MAX: ", maxScalar);
+      console.log("-> MIN_D: ", minScalar);
+      console.log("-> MAX_D: ", maxScalar);
+      console.log("-> MIN_X: ", minX);
+      console.log("-> MAX_X: ", maxX);
+      console.log("-> MIN_Y: ", minY);
+      console.log("-> MAX_Y: ", maxY);
+      console.log("-> MIN_Z: ", minZ);
+      console.log("-> MAX_Z: ", maxZ);
     });
 
   let readRow = (row) => {
