@@ -3,17 +3,17 @@
     <div>Load / delete (fully load or delete cones)</div>
     <div>
       <ul class="scroll-inputs">
-        <li v-bind:key="data.name + data.type" v-for="data in loadData">
-          <input type="checkbox" @change="checkEventLoad(data,$event)" class="checkbox-select">
-          {{ data.name }}
+        <li v-bind:key="data.name + data.type" v-for="(data, index) in loadData">
+          {{index+1}} | <input type="checkbox" @change="checkEventLoad(data,$event)" class="checkbox-select"> |
+         {{ data.name }}
         </li>
       </ul>
     </div>
     <div>Show / hide ( only hide / show cones, not remove)</div>
     <div>
       <ul class="scroll-inputs">
-        <li v-bind:key="data.name + data.type" v-for="data in showData">
-          <input type="checkbox" @change="checkEventShow(data,$event)" class="checkbox-select">
+        <li v-bind:key="data.name + data.type" v-for="(data,index) in showData">
+          {{index+1}} | <input type="checkbox" @change="checkEventShow(data,$event)" class="checkbox-select"> |
           {{ data.name }}
         </li>
       </ul>
@@ -40,7 +40,7 @@ export default {
     return {
       loadData,
       showData,
-      maxCone: 10,
+      maxCone: 1,
       heightCone:1,
       opacityCone:0.7
     }

@@ -14,6 +14,9 @@ export default class Render {
   gridLayoutX = 10
   gridLayoutY = 10
   gridLayoutZ = 10
+  heightOfCone = 1
+  opacityOfCones = 0.5
+  maxCones = 1
   allMesh = {}
 
   constructor() {}
@@ -55,6 +58,7 @@ export default class Render {
             this.results = data.split("\n")
             console.log("-> emittedData", emittedData);
             this.makeGlyphs(emittedData.slug,emittedData.color)
+            this.maxConesClient()
           });
       });
 
@@ -89,7 +93,7 @@ export default class Render {
     sphere.position.set(position.x, position.y, position.z)
     return(sphere)
   }
-  renderCone = (prop, color, height =1, opacity=0.5) => {
+  renderCone = (prop, color, height =this.heightOfCone, opacity=this.opacityOfCones) => {
     const glyphGeometry = new THREE.ConeGeometry(0.1, height, 6);
     let scaleOfData = Math.sqrt(Math.pow(prop.d1,2) + Math.pow(prop.d2,2) + Math.pow(prop.d3,2))
     // let normalizationScale = (scaleOfData - this.minScale) / (this.maxScale - this.minScale);
@@ -121,8 +125,7 @@ export default class Render {
   makeGlyphs = (slug, color) => {
     console.log("-> color", color);
     // this.setupMaxMinValues(); TODO
-    let arrayOfDatasetGlyphs = {spheres:[], cones:[]
-      }
+    let arrayOfDatasetGlyphs = {spheres:[], cones:[]}
     for (let i = 1; i < this.results.length; i++) {
       if ((i % this.getRandomArbitrary(this.podvzorMin,this.podvzorMax)) === 0) {
         let currentRow = this.results[i].split(",")
@@ -195,6 +198,7 @@ export default class Render {
   }
 
   changeHeightOfCones(height){
+    this.heightOfCone = height
     for (const property in this.allMesh) {
       console.log("-> property", property);
 
@@ -208,13 +212,14 @@ export default class Render {
         this.scene.remove( conesOld[i] );
         conesNew.push(this.renderCone(propOld, propOld.color, height, propOld.opacity))
       }
-
       this.allMesh[property].cones = conesNew
 
     }
+    this.maxConesClient()
   }
 
   changeOpacityOfCones(opacity){
+    this.opacityOfCones = opacity
     for (const property in this.allMesh) {
       let conesOld = this.allMesh[property].cones
       for (let i = 0; i < conesOld.length; i++) {
@@ -222,9 +227,11 @@ export default class Render {
         conesOld[i].VIZ.opacity = opacity;
       }
     }
+    this.maxConesClient()
   }
 
-  maxConesClient(modulo){
+  maxConesClient(modulo = this.maxCones){
+    this.maxCones = modulo
     for (const property in this.allMesh) {
       let conesOld = this.allMesh[property].cones
       for (let i = 0; i < conesOld.length; i++) {
