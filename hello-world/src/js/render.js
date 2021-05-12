@@ -92,7 +92,7 @@ export default class Render {
   renderCone = (prop, color, height =1, opacity=0.5) => {
     const glyphGeometry = new THREE.ConeGeometry(0.1, height, 6);
     let scaleOfData = Math.sqrt(Math.pow(prop.d1,2) + Math.pow(prop.d2,2) + Math.pow(prop.d3,2))
-    let normalizationScale = (scaleOfData - this.minScale) / (this.maxScale - this.minScale);
+    // let normalizationScale = (scaleOfData - this.minScale) / (this.maxScale - this.minScale);
 
     const material = new THREE.MeshBasicMaterial({
       color: color, transparent: true
@@ -140,7 +140,7 @@ export default class Render {
         let d2 = parseFloat(currentRow[4]);
         let d3 = parseFloat(currentRow[5]);
         arrayOfDatasetGlyphs.cones.push(
-          this.renderCone({x,y,z,d1,d2,d3}, color )//TODO
+          this.renderCone({x,y,z,d1,d2,d3}, color )
         )
 
       }
@@ -160,10 +160,6 @@ export default class Render {
     this.gridLayoutX = parseFloat(currentRow[4]);
     this.gridLayoutY = parseFloat(currentRow[5]);
     this.gridLayoutZ = parseFloat(currentRow[6]);
-  }
-
-  getColor(val){
-    return new THREE.Color((1.0 - val), 1.0 - val, val );
   }
 
   getRandomArbitrary(min, max) {

@@ -4,8 +4,8 @@
     <div>
       <ul class="scroll-inputs">
         <li v-bind:key="data.name + data.type" v-for="data in loadData">
+          <input type="checkbox" @change="checkEventLoad(data,$event)" class="checkbox-select">
           {{ data.name }}
-          <input type="checkbox" @change="checkEventLoad(data,$event)">
         </li>
       </ul>
     </div>
@@ -13,8 +13,8 @@
     <div>
       <ul class="scroll-inputs">
         <li v-bind:key="data.name + data.type" v-for="data in showData">
+          <input type="checkbox" @change="checkEventShow(data,$event)" class="checkbox-select">
           {{ data.name }}
-          <input type="checkbox" @change="checkEventShow(data,$event)">
         </li>
       </ul>
     </div>
@@ -108,9 +108,19 @@ export default {
   right: 2%;
   top: 2%;
   background: white;
+
+  height: 80vh;
+  overflow: scroll;
 }
 .scroll-inputs{
+  list-style-type: none;
   overflow: scroll;
   height: 15rem;
+  overflow-x: hidden;
+  padding-left: 1rem;
+}
+
+.checkbox-select{
+  transform: scale(1.5);
 }
 </style>
