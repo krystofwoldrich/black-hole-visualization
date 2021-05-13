@@ -1,5 +1,20 @@
 # Blackhole vizualization
 
+## Spuštění aplikace
+Aplikace je rozdělena do dvou částí, server (momentální adresář) 
+a frontend (složka ``blackhole-viz``). Pro sputění serveru je potřeba
+v současné složce spustit následující příkaz:
+
+### Instalace závislostí a spuštění serveru
+```
+npm start
+```
+Po nainstalování závislostí bude Váš server běžet na adrese: ``http://localhost:8000/``
+
+Pro spuštění uživatelského rozhraní postupujete buď podle složky ``README.md`` v složce
+``balckhole-viz`` (pro vytvoření dev projektu) nebo přejďete na adressu: ``http://localhost:8000/``
+která zobrazí sestavené uživatelské rozhraní (build).
+
 ## Tools example usage
 
 How to reduce original file to every 64th row.

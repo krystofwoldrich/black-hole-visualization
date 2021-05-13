@@ -1,5 +1,6 @@
 import * as THREE from '../../node_modules/three/build/three.module'
 import {OrbitControls} from "three/examples/jsm/controls/OrbitControls";
+import env from "../assets/env.json";
 
 export default class Render {
   scene;
@@ -42,7 +43,7 @@ export default class Render {
 
   async loadFile(emittedData) {
     await fetch(
-      `http://localhost:8000/api/load-data`,
+      env["api-endpoint"] + "api/load-data",
       {
         method: 'POST',
         headers: {
